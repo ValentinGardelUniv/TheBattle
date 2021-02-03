@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet/pages/AllCharactersPage.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -13,12 +14,7 @@ class HomePage extends StatelessWidget {
         ),
         backgroundColor: Colors.red,
       ),
-      body: Center(
-        child: Image(
-          image: AssetImage('assets/images/the-battle-logo.png'),
-          width: 200,
-        ),
-      ),
+      body: AllCharactersPage(),
     );
   }
 }

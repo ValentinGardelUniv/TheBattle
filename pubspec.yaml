@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  csv: ^4.1.0
   flutter_native_splash: ^0.2.9
   flutter_launcher_icons: ^0.8.1
   flutter:
@@ -64,6 +65,7 @@ flutter:
   assets:
     - assets/images/
     - assets/characters/
+    - assets/characters/characters.csv
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
