@@ -1,22 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:projet/models/Character.dart';
 
-class CharacterPreview extends StatelessWidget {
+class CharacterPreview extends StatefulWidget {
   final Character character;
-  final bool is_selected = false;
+  final Function callback;
+  final _characterPreviewState = new _CharacterPreviewState();
 
-  CharacterPreview({Key key, @required Character character})
-      : character = character,
-        super(key: key);
+  CharacterPreview({Key key, @required this.character, @required this.callback})
+      : super(key: key);
+
+  @override
+  _CharacterPreviewState createState() => _characterPreviewState;
+
+  void unselect() {
+    this._characterPreviewState.unselect();
+  }
+}
+
+class _CharacterPreviewState extends State<CharacterPreview> {
+  bool isSelected = false;
+
+  void unselect() {
+    setState(() => this.isSelected = false);
+  }
+
+  void select() {
+    if (!this.isSelected) {
+      this.widget.callback(this.widget);
+      setState(() {
+        this.isSelected = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {print("character tapped!")},
+      onTap: this.select,
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: (is_selected) ? Colors.red[300] : Colors.red[400],
+            color: (this.isSelected) ? Colors.red[300] : Colors.red[400],
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
@@ -28,22 +52,25 @@ class CharacterPreview extends StatelessWidget {
         margin: EdgeInsets.all(10),
         child: Row(
           children: [
-            Container(
-                width: 120,
-                margin: EdgeInsets.all(15),
-                alignment: Alignment.center,
-                child: Image(
-                  image: AssetImage(this.character.image),
-                  width: 60,
-                )),
-            Container(
-              child: Text(
-                character.name,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: "Knewave",
-                  fontSize: 20,
+            Expanded(
+              child: Container(
+                  margin: EdgeInsets.all(15),
+                  alignment: Alignment.center,
+                  child: Image(
+                    image: AssetImage(this.widget.character.image),
+                    width: 60,
+                  )),
+            ),
+            Expanded(
+              child: Container(
+                child: Text(
+                  this.widget.character.name,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Knewave",
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),
