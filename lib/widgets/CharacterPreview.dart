@@ -21,11 +21,13 @@ class _CharacterPreviewState extends State<CharacterPreview> {
   bool isSelected = false;
 
   void unselect() {
-    setState(() => this.isSelected = false);
+    if (this.mounted) {
+      setState(() => this.isSelected = false);
+    }
   }
 
   void select() {
-    if (!this.isSelected) {
+    if (this.mounted && !this.isSelected) {
       this.widget.callback(this.widget);
       setState(() {
         this.isSelected = true;

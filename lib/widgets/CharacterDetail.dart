@@ -18,7 +18,7 @@ class _CharacterDetailState extends State<CharacterDetail> {
   Character character;
 
   void display(Character character) {
-    setState(() => this.character = character);
+    if (this.mounted) setState(() => this.character = character);
   }
 
   @override
