@@ -6,12 +6,12 @@ class Player {
   Team team;
 
   Player(String uuid, String firstname, String lastname, String email,
-      int gender, Team team) {
+      int gender) {
     this.uuid = uuid;
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
     this.gender = gender;
-    this.team = team;
+    this.team = new Team("uuid", this);
   }
 }
