@@ -11,9 +11,24 @@ class CustomTeamPage extends StatefulWidget {
 }
 
 class _CustomTeamPageState extends State<CustomTeamPage> {
+  final _formKey = GlobalKey<FormState>();
+  String changedName;
+
+  @override
+  void initState() {
+    this.changedName = this.widget.team.name;
+    super.initState();
+  }
+
   @override
   void setState(fn) {
     if (this.mounted) super.setState(fn);
+  }
+
+  void validateForm() {
+    if (_formKey.currentState.validate()) {
+      this.widget.team.name = changedName;
+    }
   }
 
   @override
@@ -28,9 +43,36 @@ class _CustomTeamPageState extends State<CustomTeamPage> {
         ),
       ),
       body: Container(
-        color: Colors.red[400],
+        color: Colors.red[100],
         child: Center(
-          child: Text("To Implement"),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  onSaved: (value) => {changedName = value},
+                  decoration: InputDecoration(
+                    labelText: "Team name:",
+                    labelStyle: TextStyle(
+                      color: Colors.red,
+                      fontFamily: "Knewave",
+                      fontSize: 20,
+                    ),
+                    contentPadding: EdgeInsets.all(20),
+                  ),
+                  initialValue: this.widget.team.name,
+                  validator: (value) {
+                    if (value.isEmpty) return "Please enter a valid name";
+                    return null;
+                  },
+                ),
+                ElevatedButton(
+                  onPressed: validateForm,
+                  child: Text("Submit"),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

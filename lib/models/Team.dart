@@ -5,6 +5,7 @@ import 'dart:math';
 class Team {
   static const int MAX_CHARACTER = 5;
 
+  bool validated;
   String uuid;
   String name = "My Team";
   Player player;
@@ -14,6 +15,7 @@ class Team {
     this.uuid = uuid;
     this.player = player;
     this.characters = [];
+    this.validated = false;
     this.autoselectRandomCharacter(2);
   }
 
@@ -35,7 +37,7 @@ class Team {
   }
 
   bool toogleCharacter(Character character) {
-    if (character.autoSelected) return false;
+    if (this.validated || character.autoSelected) return false;
     if (characters.contains(character)) {
       characters.remove(character);
       character.selected = false;

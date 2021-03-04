@@ -4,14 +4,13 @@ import 'package:projet/models/Character.dart';
 class CharacterPreview extends StatefulWidget {
   final Character character;
   final Function showCharacterDetail;
-  final _characterPreviewState = new _CharacterPreviewState();
 
   CharacterPreview(
       {Key key, @required this.character, this.showCharacterDetail})
       : super(key: key);
 
   @override
-  _CharacterPreviewState createState() => _characterPreviewState;
+  _CharacterPreviewState createState() => _CharacterPreviewState();
 }
 
 class _CharacterPreviewState extends State<CharacterPreview> {

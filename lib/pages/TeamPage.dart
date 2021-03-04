@@ -34,7 +34,7 @@ class _TeamPageState extends State<TeamPage> {
     });
   }
 
-  Widget getTeamAction() {
+  Widget getTeamAction(context) {
     if (this.widget.team.characters.length < Team.MAX_CHARACTER) {
       String message = "Still " +
           (Team.MAX_CHARACTER - this.widget.team.characters.length).toString() +
@@ -55,8 +55,22 @@ class _TeamPageState extends State<TeamPage> {
         child: ElevatedButton(
           child: Text("Valid Team"),
           onPressed: () => {
-            Navigator.pushReplacementNamed(context, MyRouter.customTeamRoute)
-          }, //pushNamed() to enable back button, pushReplacementNamed() to disable it
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Are you sure?"),
+                action: SnackBarAction(
+                  label: "yes",
+                  onPressed: () {
+                    this.widget.team.validated = true;
+                    Navigator.pushReplacementNamed(
+                        context,
+                        MyRouter
+                            .customTeamRoute); //pushNamed() to enable back button, pushReplacementNamed() to disable it
+                  },
+                ),
+              ),
+            )
+          },
         ),
       );
     }
@@ -77,7 +91,7 @@ class _TeamPageState extends State<TeamPage> {
         color: Colors.red[400],
         child: Column(
           children: [
-            this.getTeamAction(),
+            this.getTeamAction(context),
             Flexible(
               child: ListView.builder(
                 itemCount: this.widget.team.characters.length,
