@@ -4,9 +4,14 @@ class CustomScaffold extends StatefulWidget {
   final Widget body;
   final Function onItemTapped;
   final int selectedIndex;
+  final String title;
 
   const CustomScaffold(
-      {Key key, @required this.body, this.onItemTapped, this.selectedIndex})
+      {Key key,
+      @required this.body,
+      this.onItemTapped,
+      this.selectedIndex,
+      this.title = "THE BATTLE"})
       : super(key: key);
 
   @override
@@ -21,7 +26,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
         appBar: AppBar(
           title: Center(
             child: Text(
-              "THE BATTLE",
+              this.widget.title,
               style: TextStyle(fontFamily: 'Knewave'),
             ),
           ),

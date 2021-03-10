@@ -31,28 +31,60 @@ class _CharacterDetailState extends State<CharacterDetail> {
     setState(() => this.character = character);
   }
 
-  Widget getTeamButton() {
-    if (!this.character.autoSelected) {
-      if (this.character.selected) {
-        return Center(
-          child: ElevatedButton(
-            child: Text("Remove From Team"),
-            onPressed: () =>
-                setState(() => this.widget.toogleCharacter(this.character)),
-          ),
-        );
-      } else if (Team.MAX_CHARACTER >
-          Character.getSelectedCharacters().length) {
-        return Center(
-          child: ElevatedButton(
-            child: Text("Add To Team"),
-            onPressed: () =>
-                setState(() => this.widget.toogleCharacter(this.character)),
-          ),
-        );
-      }
+  void onAddToTeam(context) {
+    var message;
+    if (this.character.selected) {
+      message = "Character already selected";
+    } else if (Team.MAX_CHARACTER <= Character.getSelectedCharacters().length) {
+      message = "Team full";
+    } else {
+      this.widget.toogleCharacter(this.character);
+      return;
     }
-    return Container();
+    showDialog(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Action unavailable!'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget getTeamButton() {
+    return Container(
+      margin: EdgeInsets.all(10),
+      child: Center(
+        child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.white),
+            padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: 15,
+            )),
+          ),
+          child: Text(
+            "add to team",
+            style: TextStyle(
+              fontFamily: "Knewave",
+              color: Colors.red,
+              fontSize: 20,
+            ),
+          ),
+          onPressed: () => this.onAddToTeam(context),
+        ),
+      ),
+    );
   }
 
   @override

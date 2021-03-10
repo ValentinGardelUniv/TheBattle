@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet/models/Character.dart';
 import 'package:projet/models/Team.dart';
 import 'package:projet/pages/MyRouter.dart';
-import 'package:projet/widgets/CharacterPreview.dart';
+import 'package:projet/widgets/CharacterCustomPreview.dart';
 import 'package:projet/widgets/CustomScaffold.dart';
 
 class TeamPage extends StatefulWidget {
@@ -39,13 +39,13 @@ class _TeamPageState extends State<TeamPage> {
     if (this.widget.team.characters.length < Team.MAX_CHARACTER) {
       String message = "Still " +
           (Team.MAX_CHARACTER - this.widget.team.characters.length).toString() +
-          " character(s) to select!";
+          " character(s) to add!";
       return Center(
           heightFactor: 2,
           child: Text(
             message,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.yellow,
               fontFamily: "Knewave",
               fontSize: 20,
             ),
@@ -54,7 +54,18 @@ class _TeamPageState extends State<TeamPage> {
       return Center(
         heightFactor: 2,
         child: ElevatedButton(
-          child: Text("Valid Team"),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.green[400]),
+            padding: MaterialStateProperty.all(
+                EdgeInsets.symmetric(vertical: 5, horizontal: 15)),
+          ),
+          child: Text(
+            "Validate My Team",
+            style: TextStyle(
+              fontFamily: "Knewave",
+              fontSize: 20,
+            ),
+          ),
           onPressed: () => {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -77,9 +88,16 @@ class _TeamPageState extends State<TeamPage> {
     }
   }
 
+  void removeFromTeam(Character character) {
+    setState(() {
+      this.widget.team.toogleCharacter(character);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      title: "My Team",
       body: Container(
         color: Colors.red[400],
         child: Column(
@@ -89,8 +107,10 @@ class _TeamPageState extends State<TeamPage> {
               child: ListView.builder(
                 itemCount: this.widget.team.characters.length,
                 itemBuilder: (context, index) {
-                  return CharacterPreview(
-                      character: Character.getSelectedCharacters()[index]);
+                  return CharacterCustomPreview(
+                    character: Character.getSelectedCharacters()[index],
+                    removeFromTeam: this.removeFromTeam,
+                  );
                 },
               ),
             ),
