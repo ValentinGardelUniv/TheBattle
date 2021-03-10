@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet/models/Team.dart';
 import 'package:projet/pages/AllCharactersPage.dart';
 import 'package:projet/pages/MyRouter.dart';
+import 'package:projet/widgets/CustomScaffold.dart';
 
 class HomePage extends StatefulWidget {
   final Team team;
@@ -34,33 +35,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            "THE BATTLE",
-            style: TextStyle(fontFamily: 'Knewave'),
-          ),
-        ),
-      ),
+    return CustomScaffold(
       body: AllCharactersPage(
         team: this.widget.team,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Characters",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.theater_comedy),
-            label: "Team",
-          )
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
+      onItemTapped: this._onItemTapped,
+      selectedIndex: this._selectedIndex,
     );
   }
 }

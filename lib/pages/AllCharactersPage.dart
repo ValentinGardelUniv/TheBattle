@@ -22,9 +22,10 @@ class _AllCharactersPageState extends State<AllCharactersPage> {
   }
 
   void toogleCharacter(Character character) {
-    setState(() {
-      this.widget.team.toogleCharacter(character);
-    });
+    //setState(() {
+    this.widget.team.toogleCharacter(character);
+    Navigator.pushReplacementNamed(context, "/team");
+    //});
   }
 
   @override

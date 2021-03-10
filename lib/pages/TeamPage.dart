@@ -3,6 +3,7 @@ import 'package:projet/models/Character.dart';
 import 'package:projet/models/Team.dart';
 import 'package:projet/pages/MyRouter.dart';
 import 'package:projet/widgets/CharacterPreview.dart';
+import 'package:projet/widgets/CustomScaffold.dart';
 
 class TeamPage extends StatefulWidget {
   final Team team;
@@ -78,15 +79,7 @@ class _TeamPageState extends State<TeamPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            "THE BATTLE",
-            style: TextStyle(fontFamily: 'Knewave'),
-          ),
-        ),
-      ),
+    return CustomScaffold(
       body: Container(
         color: Colors.red[400],
         child: Column(
@@ -104,21 +97,8 @@ class _TeamPageState extends State<TeamPage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Characters",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.theater_comedy),
-            label: "Team",
-          )
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
+      selectedIndex: _selectedIndex,
+      onItemTapped: _onItemTapped,
     );
   }
 }

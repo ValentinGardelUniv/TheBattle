@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet/models/Team.dart';
+import 'package:projet/widgets/CustomScaffold.dart';
 
 class CustomTeamPage extends StatefulWidget {
   final Team team;
@@ -33,15 +34,7 @@ class _CustomTeamPageState extends State<CustomTeamPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            "THE BATTLE",
-            style: TextStyle(fontFamily: 'Knewave'),
-          ),
-        ),
-      ),
+    return CustomScaffold(
       body: Container(
         color: Colors.red[100],
         child: Center(
