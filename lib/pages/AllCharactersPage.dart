@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projet/models/Character.dart';
 import 'package:projet/models/Team.dart';
 import 'package:projet/pages/MyRouter.dart';
-import 'package:projet/widgets/CharacterDetail.dart';
-import 'package:projet/widgets/CharacterMaster.dart';
+import 'package:projet/widgets/Character/CharacterDetail.dart';
+import 'package:projet/widgets/Character/CharacterMaster.dart';
 
 class AllCharactersPage extends StatefulWidget {
   final Team team;
@@ -23,10 +23,8 @@ class _AllCharactersPageState extends State<AllCharactersPage> {
   }
 
   void toogleCharacter(Character character) {
-    //setState(() {
     this.widget.team.toogleCharacter(character);
     Navigator.pushReplacementNamed(context, MyRouter.teamRoute);
-    //});
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet/models/Character.dart';
-import 'package:projet/widgets/CharacterPreview.dart';
+import 'package:projet/widgets/Character/CharacterPreview.dart';
 
 class CharacterMaster extends StatelessWidget {
   final Function showCharacterDetail;

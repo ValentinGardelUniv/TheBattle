@@ -11,7 +11,7 @@ class CustomScaffold extends StatefulWidget {
       @required this.body,
       this.onItemTapped,
       this.selectedIndex,
-      this.title = "THE BATTLE"})
+      @required this.title})
       : super(key: key);
 
   @override

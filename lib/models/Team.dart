@@ -2,12 +2,15 @@ import 'package:projet/models/Character.dart';
 import 'package:projet/models/Player.dart';
 import 'dart:math';
 
+import 'package:projet/models/Shield.dart';
+
 class Team {
   static const int MAX_CHARACTER = 5;
 
+  Shield shield;
   bool validated;
   String uuid;
-  String name = "My Team";
+  String name;
   Player player;
   List<Character> characters;
 
@@ -16,6 +19,7 @@ class Team {
     this.player = player;
     this.characters = [];
     this.validated = false;
+    this.name = "My Team";
     this.autoselectRandomCharacter(2);
   }
 

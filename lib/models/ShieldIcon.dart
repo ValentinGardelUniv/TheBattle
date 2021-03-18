@@ -27,9 +27,9 @@ class ShieldIcon {
   String uuid;
   Color color;
 
-  ShieldIcon(String uuid) {
+  ShieldIcon(String uuid, {Color color = Colors.white}) {
     this.uuid = uuid;
-    this.color = Colors.black;
+    this.color = color;
   }
 
   String getUrl() {

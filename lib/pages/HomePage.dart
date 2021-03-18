@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet/models/Team.dart';
 import 'package:projet/pages/AllCharactersPage.dart';
 import 'package:projet/pages/MyRouter.dart';
-import 'package:projet/widgets/CustomScaffold.dart';
+import 'package:projet/widgets/Custom/CustomScaffold.dart';
 
 class HomePage extends StatefulWidget {
   final Team team;
@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
       ),
       onItemTapped: this._onItemTapped,
       selectedIndex: this._selectedIndex,
+      title: "The Battle",
     );
   }
 }

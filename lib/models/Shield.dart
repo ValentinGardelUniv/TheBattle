@@ -13,9 +13,9 @@ class Shield {
   ShieldIcon icon;
   Color color;
 
-  Shield(String uuid) {
+  Shield(String uuid, {Color color = Colors.black, ShieldIcon icon}) {
     this.icon = null;
-    this.color = Colors.black;
+    this.color = color;
     this.uuid = uuid;
   }
 

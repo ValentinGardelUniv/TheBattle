@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:projet/models/Character.dart';
 import 'package:projet/models/Team.dart';
 import 'package:projet/pages/MyRouter.dart';
-import 'package:projet/widgets/CharacterCustomPreview.dart';
-import 'package:projet/widgets/CustomScaffold.dart';
+import 'package:projet/widgets/Character/CharacterCustomPreview.dart';
+import 'package:projet/widgets/Custom/CustomScaffold.dart';
+import 'package:projet/widgets/Custom/CustomText.dart';
 
 class TeamPage extends StatefulWidget {
   final Team team;
@@ -42,13 +43,9 @@ class _TeamPageState extends State<TeamPage> {
           " character(s) to add!";
       return Center(
           heightFactor: 2,
-          child: Text(
+          child: CustomText(
             message,
-            style: TextStyle(
-              color: Colors.yellow,
-              fontFamily: "Knewave",
-              fontSize: 20,
-            ),
+            color: Colors.yellow,
           ));
     } else {
       return Center(
