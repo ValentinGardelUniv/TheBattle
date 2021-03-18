@@ -44,8 +44,9 @@ class _ShieldIconDetailState extends State<ShieldIconDetail> {
           ),
           PageView.builder(
             itemCount: ShieldIcon.icons.length,
-            controller:
-                PageController(viewportFraction: this.widget.shieldFraction),
+            controller: PageController(
+                viewportFraction: this.widget.shieldFraction,
+                initialPage: this.widget.shieldIconIndex),
             onPageChanged: this.widget.updateShieldImage,
             itemBuilder: (_, i) {
               return Transform.scale(

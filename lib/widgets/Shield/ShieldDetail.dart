@@ -36,12 +36,10 @@ class _ShieldDetailState extends State<ShieldDetail> {
         children: [
           PageView.builder(
             itemCount: Shield.shields.length,
-            controller:
-                PageController(viewportFraction: this.widget.shieldFraction),
+            controller: PageController(
+                viewportFraction: this.widget.shieldFraction,
+                initialPage: this.widget.shieldIndex),
             onPageChanged: this.widget.updateShieldImage,
-            /*(int index) => setState(() {
-              this.widget.updateShieldImage(index);
-            }),*/
             itemBuilder: (_, i) {
               return Transform.scale(
                 scale: i == this.widget.shieldIndex ? 1 : 0.9,

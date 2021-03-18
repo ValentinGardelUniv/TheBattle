@@ -50,9 +50,6 @@ class _ShieldMasterState extends State<ShieldMaster> {
           enableShadesSelection: false,
           color: this.widget.shieldColor,
           onColorChanged: this.widget.updateShieldColor,
-          /*(Color color) => setState(() {
-            this.widget.updateShieldColor(color);
-          }),*/
           width: 44,
           height: 44,
           borderRadius: 22,
