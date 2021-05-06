@@ -1,14 +1,3 @@
-android/
-build/
-integration_test/
-ios/
-test/
-web/
-.metadata
-projet.iml
-*.lock
-
-
 # Miscellaneous
 *.class
 *.log
